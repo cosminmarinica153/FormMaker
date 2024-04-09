@@ -1,0 +1,51 @@
+<div class="flex w-full flex-col items-start gap-4">
+  <div class="relative bg-inherit">
+    <form [formGroup]="questionForm" (submit)="onQuestionChange()">
+      <input
+        type="text"
+        id="username"
+        name="username"
+        formControlName="question"
+        class="peer h-10 w-72 rounded-lg bg-transparent px-2 text-black placeholder-transparent ring-2 ring-gray-500 focus:outline-none focus:ring-pink-400"
+        placeholder="Type inside me"
+      /><label
+        for="username"
+        class="absolute -top-5 left-0 mx-1 cursor-text bg-inherit px-1 text-sm text-purple-500 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:-top-5 peer-focus:text-sm peer-focus:text-purple-500"
+        >Provide question</label
+      >
+    </form>
+  </div>
+  <div cdkDropList class="item-list w-full" (cdkDropListDropped)="drop($event)">
+    @for (option of data.options; track $index) {
+      <div
+        cdkDrag
+        class="drag-item flex w-full justify-between hover:border-b-2"
+      >
+        <div class="flex gap-2">
+          <button cdkDragHandle>
+            <img class="size-4" src="assets/icons/move-item.svg" alt="" />
+          </button>
+          <mat-radio-button>
+            <input class="outline-none" value="{{ option }}" />
+          </mat-radio-button>
+        </div>
+        <button (click)="deleteOption($index)">
+          <img class="size-6" src="assets/icons/delete-simple.svg" alt="" />
+        </button>
+      </div>
+    }
+  </div>
+  <form
+    (submit)="addOption(option.value); $event.preventDefault()"
+    [formGroup]="optionForm"
+  >
+    <mat-radio-button>
+      <input
+        formControlName="option"
+        class="outline-none focus:border-b-2"
+        placeholder="Add option"
+        #option
+      />
+    </mat-radio-button>
+  </form>
+</div>

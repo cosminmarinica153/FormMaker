@@ -1,0 +1,95 @@
+<!-- HEADER -->
+
+<div class="bg-white px-10 py-5 font-semibold">
+  <div class="flex w-full items-center justify-between">
+    <!-- Form details -->
+    <!-- Form Name -->
+    <p class="!m-0 text-xl outline-none focus:border-b-2" value="Test">
+      FormMaker by Cosmin
+    </p>
+    <!-- Options -->
+    <div *ngIf="!isLoggedIn" class="flex items-center gap-6">
+      <!-- login -->
+      <button
+        class="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 p-0.5 text-sm font-medium text-black hover:text-white focus:outline-none focus:ring-4 focus:ring-purple-200 group-hover:from-purple-500 group-hover:to-pink-500"
+      >
+        <a
+          routerLink="/login"
+          class="relative rounded-md bg-white px-4 py-1 transition-all duration-75 ease-in group-hover:bg-opacity-0"
+        >
+          Login
+        </a>
+      </button>
+      <!-- Register -->
+      <button
+        class="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 p-0.5 text-sm font-medium text-black hover:text-white focus:outline-none focus:ring-4 focus:ring-purple-200 group-hover:from-purple-500 group-hover:to-pink-500"
+      >
+        <a
+          routerLink="/register"
+          class="relative rounded-md bg-white px-4 py-1 transition-all duration-75 ease-in group-hover:bg-opacity-0"
+        >
+          Register
+        </a>
+      </button>
+    </div>
+    <div *ngIf="isLoggedIn" class="flex items-center gap-6">
+      <!-- Logout -->
+      <button
+        class="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 p-0.5 text-sm font-medium text-black hover:text-white focus:outline-none focus:ring-4 focus:ring-purple-200 group-hover:from-purple-500 group-hover:to-pink-500"
+      >
+        <a
+          (click)="logout()"
+          class="relative rounded-md bg-white px-4 py-1 transition-all duration-75 ease-in group-hover:bg-opacity-0"
+        >
+          Logout
+        </a>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<!-- NOT LOGGED IN -->
+<div
+  *ngIf="!isLoggedIn"
+  class="absolute inset-20 flex items-center justify-center"
+>
+  <p class="!m-0 w-80 text-center text-4xl font-semibold">
+    Seems like you are not logged in, login or create an account to continue...
+  </p>
+</div>
+
+<!-- LOGGED IN -->
+<div
+  *ngIf="isLoggedIn"
+  class="!mb-20 mt-10 grid w-svw grid-cols-1 gap-8 px-5 sm:grid-cols-2 sm:px-10 md:grid-cols-3 md:px-20 lg:grid-cols-4 lg:px-40"
+>
+  <!-- Create new form -->
+  <div
+    class="relative mx-auto w-[15svw] min-w-[200px] cursor-pointer rounded-lg bg-gradient-to-tr from-pink-300 to-blue-300 p-0.5 shadow-lg"
+    (click)="createNewForm()"
+  >
+    <div class="flex flex-col gap-4 rounded-md bg-white px-7 py-5 text-black">
+      <img class="size-40" src="assets/icons/file-create.svg" alt="" />
+      <div
+        class="h-1 w-full rounded bg-gradient-to-tr from-pink-300 to-blue-300"
+      ></div>
+      <p class="!m-0 text-center text-lg font-semibold">Create a new form</p>
+    </div>
+  </div>
+  <!-- Load user forms -->
+  @for (form of userForms; track $index) {
+    <div
+      (click)="goToForm($index)"
+      class="relative mx-auto w-[15svw] min-w-[100px] cursor-pointer rounded-lg bg-gradient-to-tr from-pink-300 to-blue-300 p-0.5 shadow-lg"
+    >
+      <div class="flex flex-col gap-4 rounded-md bg-white px-7 py-5 text-black">
+        <img class="size-40" src="assets/icons/file.svg" alt="" />
+        <div
+          class="h-1 w-full rounded bg-gradient-to-tr from-pink-300 to-blue-300"
+        ></div>
+        <p class="!m-0 text-center text-lg font-semibold">{{ form.title }}</p>
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,66 @@
+<div class="flex w-full flex-col items-start gap-4">
+  <div class="relative bg-inherit">
+    <form [formGroup]="questionForm" (submit)="onQuestionChange()">
+      <input
+        type="text"
+        id="username"
+        name="username"
+        formControlName="question"
+        class="peer h-10 w-72 rounded-lg bg-transparent px-2 text-black placeholder-transparent ring-2 ring-gray-500 focus:outline-none focus:ring-pink-400"
+        placeholder="Type inside me"
+      /><label
+        for="username"
+        class="absolute -top-5 left-0 mx-1 cursor-text bg-inherit px-1 text-sm text-purple-500 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:-top-5 peer-focus:text-sm peer-focus:text-purple-500"
+        >Provide question</label
+      >
+    </form>
+  </div>
+  <!-- Options -->
+  <div class="w-full pr-5">
+    <!-- File types -->
+    <div>
+      <div class="flex justify-between">
+        Allow only specific file types
+        <label
+          class="inline-flex cursor-pointer items-center"
+          matTooltip="Make field required"
+        >
+          <input
+            type="checkbox"
+            class="peer sr-only"
+            [checked]="isOptionsOpen"
+            (change)="toggleOptions()"
+          />
+          <div
+            class="peer relative h-6 w-11 rounded-full bg-gray-600 after:absolute after:start-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-gradient-to-br peer-checked:from-purple-500 peer-checked:to-pink-500 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-blue-800 rtl:peer-checked:after:-translate-x-full"
+          ></div>
+        </label>
+      </div>
+      <form>
+        <div *ngIf="isOptionsOpen" class="grid grid-cols-2 gap-2">
+          @for (option of fileOptions; track $index) {
+            <mat-checkbox
+              [checked]="isFileChecked(option)"
+              (click)="onCheckboxUpdate(option, $index)"
+            >
+              {{ option }}
+            </mat-checkbox>
+          }
+        </div>
+      </form>
+    </div>
+    <!-- Maximum file size -->
+    <div class="mt-5 flex justify-between">
+      <mat-label>Maximum file size</mat-label>
+      <div class="w-1/4">
+        <mat-select class="" value="{{ data.maxFileSize }}">
+          @for (size of sizeOptions; track size) {
+            <mat-option (click)="updateSize(size)" [value]="size">{{
+              size
+            }}</mat-option>
+          }
+        </mat-select>
+      </div>
+    </div>
+  </div>
+</div>

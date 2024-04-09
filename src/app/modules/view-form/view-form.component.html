@@ -1,0 +1,108 @@
+<app-form-header [mt]="'2rem'">
+  <p class="w-full text-2xl font-semibold outline-none focus:border-b-2">
+    {{ form.title }}
+  </p>
+  <p>{{ form.description }}</p>
+</app-form-header>
+
+<div class="card-list my-6 flex w-full flex-col justify-center gap-4 pb-16">
+  <form [formGroup]="formGroup" (submit)="onSubmit()">
+    @for (card of form.cards; track $index) {
+      <app-card [preview]="true" class="mb-4">
+        @switch (card.type) {
+          @case ("checkbox") {
+            <div class="flex w-full flex-col items-start gap-4">
+              <div
+                class="relative w-full border-b-2 bg-inherit text-xl font-semibold"
+              >
+                {{ card.question }}
+              </div>
+              <div class="w-full">
+                @for (option of card.options; track $index) {
+                  <div class="drag-item flex w-full justify-between">
+                    <div class="flex gap-2">
+                      <mat-checkbox>
+                        <input class="outline-none" value="{{ option }}" />
+                      </mat-checkbox>
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          }
+          @case ("file-upload") {
+            <div class="flex w-full flex-col items-start gap-4">
+              <div
+                class="relative w-full border-b-2 bg-inherit text-xl font-semibold"
+              >
+                {{ card.question }}
+              </div>
+              <div class="w-full">
+                <label
+                  for="photobutton"
+                  class="text-xs font-medium text-gray-500"
+                  >Your Upload</label
+                >
+                <div class="relative z-0 mt-0.5 flex w-full -space-x-px">
+                  <input
+                    id="photobutton"
+                    type="file"
+                    class="block w-full cursor-pointer appearance-none rounded-l-md border border-gray-200 bg-white px-3 py-2 text-sm transition focus:z-10 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600 disabled:cursor-not-allowed disabled:bg-gray-200 disabled:opacity-75"
+                  />
+                </div>
+              </div>
+              <p class="text-xs italic text-gray-500">accepted files:</p>
+            </div>
+          }
+          @case ("multiple-choice") {
+            <div class="flex w-full flex-col items-start gap-4">
+              <div
+                class="relative w-full border-b-2 bg-inherit text-xl font-semibold"
+              >
+                {{ card.question }}
+              </div>
+              <div class="w-full">
+                @for (option of card.options; track $index) {
+                  <div class="drag-item flex w-full justify-between">
+                    <div class="flex gap-2">
+                      <mat-radio-button>
+                        <input class="outline-none" value="{{ option }}" />
+                      </mat-radio-button>
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          }
+          @case ("paragraph") {
+            <div class="flex w-full flex-col items-start gap-4">
+              <div
+                class="relative w-full border-b-2 bg-inherit text-xl font-semibold"
+              >
+                {{ card.question }}
+              </div>
+              <textarea
+                name=""
+                id=""
+                rows="5"
+                class="w-full resize-none border-2 border-gray-300 p-2 outline-none"
+                placeholder="Your aswear goes here..."
+              ></textarea>
+            </div>
+          }
+        }
+      </app-card>
+    }
+    <div class="flex w-full justify-center">
+      <button
+        class="relative mt-5 inline-flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 p-0.5 text-center text-sm font-medium text-black hover:text-white focus:outline-none focus:ring-4 focus:ring-purple-200 group-hover:from-purple-500 group-hover:to-pink-500"
+      >
+        <span
+          class="relative rounded-md bg-white px-4 py-1 transition-all duration-75 ease-in hover:text-black group-hover:bg-opacity-0"
+        >
+          Submit
+        </span>
+      </button>
+    </div>
+  </form>
+</div>

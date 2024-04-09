@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-slate-300;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-white;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-md bg-gradient-to-br from-purple-500 to-pink-500;
+  cursor: pointer;
+}

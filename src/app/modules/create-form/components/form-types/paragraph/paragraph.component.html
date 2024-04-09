@@ -1,0 +1,19 @@
+<div class="flex w-full flex-col items-start gap-4">
+  <div class="relative bg-inherit">
+    <form [formGroup]="form" (submit)="onSubmit()">
+      <input
+        type="text"
+        id="username"
+        name="username"
+        formControlName="question"
+        class="peer h-10 w-72 rounded-lg bg-transparent px-2 text-black placeholder-transparent ring-2 ring-gray-500 focus:outline-none focus:ring-pink-400"
+        placeholder="Type inside me"
+      /><label
+        for="username"
+        class="absolute -top-5 left-0 mx-1 cursor-text bg-inherit px-1 text-sm text-purple-500 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:-top-5 peer-focus:text-sm peer-focus:text-purple-500"
+        >Provide question</label
+      >
+    </form>
+  </div>
+  <p class="w-4/5 border-b-2 border-dotted text-gray-500">Answear box</p>
+</div>

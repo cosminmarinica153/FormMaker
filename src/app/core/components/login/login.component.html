@@ -1,0 +1,107 @@
+<!-- component -->
+<div
+  class="flex h-screen w-full items-center justify-center bg-gradient-to-br from-blue-600 to-cyan-300"
+>
+  <form [formGroup]="loginForm" (submit)="onLogin()">
+    <div class="w-screen max-w-sm rounded-xl bg-white px-10 py-8 shadow-xl">
+      <div class="space-y-4">
+        <h1 class="text-center text-2xl font-semibold text-gray-600">Login</h1>
+        <hr />
+        <div class="mb-4 flex items-center rounded-md border-2 px-3 py-2">
+          <svg
+            class="text-gray-400"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <input
+            class="w-full border-none pl-2 outline-none"
+            type="text"
+            formControlName="username"
+            placeholder="Username"
+            required
+          />
+          <span
+            class="text-red-600"
+            *ngIf="!username.valid && (username.touched || submit)"
+          >
+            required
+          </span>
+        </div>
+        <div class="flex items-center rounded-md border-2 px-3 py-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 text-gray-400"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <input
+            class="w-full border-none pl-2 outline-none"
+            type="password"
+            formControlName="password"
+            placeholder="Password"
+            required
+          />
+          <span
+            class="text-red-600"
+            *ngIf="!password.valid && (password.touched || submit)"
+          >
+            required
+          </span>
+        </div>
+        <span
+          class="text-red-600"
+          *ngIf="loginForm.hasError('notFound') && submit"
+        >
+          Username or password are incorect</span
+        >
+      </div>
+
+      <button
+        type="submit"
+        value="login"
+        id="login"
+        class="mt-6 w-full rounded-md bg-gradient-to-tr from-blue-600 to-red-400 py-2 text-lg tracking-wide text-indigo-100 shadow-xl transition duration-1000 hover:to-red-700"
+      >
+        Login
+      </button>
+      <hr />
+      <div class="mt-4 flex items-center justify-center">
+        <p
+          class="inline-flex items-center text-center text-xs font-medium text-gray-700"
+        >
+          <span class="ml-2"
+            >You don't have an account?<a
+              routerLink="/register"
+              class="ml-2 text-xs font-semibold text-blue-500"
+              >Register now &rarr;</a
+            >
+          </span>
+        </p>
+      </div>
+    </div>
+  </form>
+</div>

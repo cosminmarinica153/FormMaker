@@ -1,0 +1,36 @@
+<div
+  class="relative mx-auto w-[55svw] min-w-[500px] rounded-lg bg-gradient-to-tr from-pink-300 to-blue-300 p-0.5 shadow-lg"
+>
+  <div class="flex flex-col gap-4 rounded-md bg-white px-7 py-5 text-black">
+    <ng-content></ng-content>
+    <!-- Card footer -->
+    <div
+      *ngIf="!preview"
+      class="flex items-center justify-end gap-3 border-t-2 px-4 py-2 pt-4"
+    >
+      <!-- Delete card -->
+      <button matTooltip="Delete card" (click)="deleteCard()">
+        <img class="size-7" src="assets/icons/delete.svg" />
+      </button>
+      <!-- Required field -->
+      <label
+        class="inline-flex cursor-pointer items-center"
+        matTooltip="Make field required"
+      >
+        <input
+          type="checkbox"
+          value=""
+          class="peer sr-only"
+          [checked]="isRequired"
+          (change)="updateRequired()"
+        />
+        <div
+          class="peer relative h-6 w-11 rounded-full bg-gray-600 after:absolute after:start-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-gradient-to-br peer-checked:from-purple-500 peer-checked:to-pink-500 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-blue-800 rtl:peer-checked:after:-translate-x-full"
+        ></div>
+      </label>
+      <button matTooltip="More Options">
+        <img class="size-5" src="assets/icons/options-vertical.svg" />
+      </button>
+    </div>
+  </div>
+</div>
