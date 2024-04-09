@@ -62,7 +62,7 @@
 <!-- LOGGED IN -->
 <div
   *ngIf="isLoggedIn"
-  class="!mb-20 mt-10 grid w-svw grid-cols-1 gap-8 px-5 sm:grid-cols-2 sm:px-10 md:grid-cols-3 md:px-20 lg:grid-cols-4 lg:px-40"
+  class="!mb-20 mt-10 grid w-svw grid-cols-1 gap-8 px-5 sm:grid-cols-2 sm:px-10 md:grid-cols-4 md:px-20"
 >
   <!-- Create new form -->
   <div
@@ -74,14 +74,14 @@
       <div
         class="h-1 w-full rounded bg-gradient-to-tr from-pink-300 to-blue-300"
       ></div>
-      <p class="!m-0 text-center text-lg font-semibold">Create a new form</p>
+      <p class="!m-0 text-center text-lg font-semibold">Create new</p>
     </div>
   </div>
   <!-- Load user forms -->
   @for (form of userForms; track $index) {
     <div
       (click)="goToForm($index)"
-      class="relative mx-auto w-[15svw] min-w-[100px] cursor-pointer rounded-lg bg-gradient-to-tr from-pink-300 to-blue-300 p-0.5 shadow-lg"
+      class="relative mx-auto w-[15svw] min-w-[200px] cursor-pointer rounded-lg bg-gradient-to-tr from-pink-300 to-blue-300 p-0.5 shadow-lg"
     >
       <div class="flex flex-col gap-4 rounded-md bg-white px-7 py-5 text-black">
         <img class="size-40" src="assets/icons/file.svg" alt="" />
